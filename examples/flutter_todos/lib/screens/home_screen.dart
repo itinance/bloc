@@ -6,10 +6,13 @@ import 'package:flutter_todos/widgets/widgets.dart';
 import 'package:flutter_todos/localization.dart';
 import 'package:flutter_todos/models/models.dart';
 
+import '../blocs/blocs.dart';
+import '../blocs/blocs.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TabBloc, AppTab>(
+    return BlocBuilder<TabCubit, AppTab>(
       builder: (context, activeTab) {
         return Scaffold(
           appBar: AppBar(
@@ -31,7 +34,7 @@ class HomeScreen extends StatelessWidget {
           bottomNavigationBar: TabSelector(
             activeTab: activeTab,
             onTabSelected: (tab) =>
-                BlocProvider.of<TabBloc>(context).add(TabUpdated(tab)),
+                BlocProvider.of<TabCubit>(context).changeTab(tab),
           ),
         );
       },

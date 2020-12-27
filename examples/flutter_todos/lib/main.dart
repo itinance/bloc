@@ -9,6 +9,8 @@ import 'package:flutter_todos/blocs/blocs.dart';
 import 'package:flutter_todos/models/models.dart';
 import 'package:flutter_todos/screens/screens.dart';
 
+import 'models/app_tab.dart';
+
 void main() {
   // We can set a Bloc's observer to an instance of `SimpleBlocObserver`.
   // This will allow us to handle all transitions and errors in SimpleBlocObserver.
@@ -44,8 +46,8 @@ class TodosApp extends StatelessWidget {
         ArchSampleRoutes.home: (context) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider<TabBloc>(
-                create: (context) => TabBloc(),
+              BlocProvider(
+                create: (context) => TabCubit(AppTab.todos),
               ),
               BlocProvider<FilteredTodosBloc>(
                 create: (context) => FilteredTodosBloc(
